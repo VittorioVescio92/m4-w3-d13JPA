@@ -38,12 +38,20 @@ public class Application {
 		PartecipazioneDAO pd2 = new PartecipazioneDAO(em);
 
 		Location location1 = new Location("Parco Margherita", "Amantea (CS)");
+
 		Partecipazione partecipazione1 = new Partecipazione(null, null, StatoPartecipazione.CONFERMATA);
+
+		Partecipazione partecipazione2 = new Partecipazione(null, null, StatoPartecipazione.DA_CONFERMARE);
+
 		Persona persona1 = new Persona("Ajeje", "Brazorf", "ajejeBrazorf@yahoo.com", LocalDate.of(1989, 4, 15),
-				Sesso.MASCHIO, new HashSet<Partecipazione>(Arrays.asList(partecipazione1)));
+				Sesso.MASCHIO, new HashSet<Partecipazione>(Arrays.asList(partecipazione1, partecipazione2)));
+
+		Persona persona2 = new Persona("Signor", "Rezzonico", "rezzo.nico@yahoo.com", LocalDate.of(1985, 4, 15),
+				Sesso.MASCHIO, new HashSet<Partecipazione>(Arrays.asList(partecipazione1, partecipazione2)));
 
 		Evento evento1 = new Evento("Miss maglietta bagnata", LocalDate.of(2023, 6, 15), "Evento benefico",
-				TipoEvento.PUBBLICO, 1500, new HashSet<Partecipazione>(Arrays.asList(partecipazione1)), location1);
+				TipoEvento.PUBBLICO, 1500, new HashSet<Partecipazione>(Arrays.asList(partecipazione1, partecipazione2)),
+				location1);
 
 //		ld.save(location1);
 //		pd2.save(partecipazione1);
@@ -52,8 +60,13 @@ public class Application {
 //		partecipazione1.setPersona(persona1);
 //		partecipazione1.setEvento(evento1);
 //		pd2.update(partecipazione1);
+//		pd2.save(partecipazione2);
+//		pd.save(persona2);
+//		partecipazione2.setPersona(persona2);
+//		partecipazione2.setEvento(evento1);
+//		pd2.update(partecipazione2);
 
-		Evento foundE = ed.getById(UUID.fromString("476036c8-4ea9-46f9-82c7-a16a5c2e2a51"));
+		Evento foundE = ed.getById(UUID.fromString("99c88d74-edbd-49dc-b3de-15a8d168280a"));
 		if (foundE != null) {
 			log.info(foundE.toString());
 			log.info(foundE.getListaPartecipazioni().toString());
